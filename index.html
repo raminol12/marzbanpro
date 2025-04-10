@@ -42,7 +42,7 @@
         }
 
         .dashboard {
-            background: rgba(255, 255, 255, 0.95);
+            background: rgba(245, 245, 245, 0.85);
             backdrop-filter: blur(10px);
             border-radius: 1rem;
             padding: 1.5rem;
@@ -73,6 +73,61 @@
             position: relative;
             padding-bottom: 1rem;
             border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+        }
+
+        .seller-logo {
+            position: absolute;
+            top: -2rem;
+            left: 0;
+            width: 100px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.9), rgba(245, 245, 245, 0.9));
+            border-radius: 0.5rem;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            padding: 0.5rem;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            overflow: hidden;
+        }
+
+        .seller-logo::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            transform: translateX(-100%);
+            animation: shine 3s infinite;
+        }
+
+        .seller-logo::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: 0.5rem;
+            background: radial-gradient(circle at center, rgba(255, 255, 255, 0.2) 0%, transparent 70%);
+            animation: pulse 2s infinite;
+        }
+
+        .seller-logo:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+            border-color: rgba(255, 255, 255, 0.4);
+        }
+
+        .seller-logo img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+            filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
+            transition: all 0.3s ease;
+        }
+
+        .seller-logo:hover img {
+            transform: scale(1.05);
+            filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.15));
         }
 
         .avatar {
@@ -136,7 +191,7 @@
         }
 
         .stat-card {
-            background: var(--white);
+            background: rgba(250, 250, 250, 0.9);
             border-radius: 1rem;
             padding: 1rem;
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
@@ -182,7 +237,7 @@
         }
 
         .progress-section {
-            background: var(--white);
+            background: rgba(250, 250, 250, 0.9);
             border-radius: 1rem;
             padding: 1rem;
             margin-bottom: 1.5rem;
@@ -232,7 +287,7 @@
         }
 
         .action-button {
-            background: var(--white);
+            background: rgba(250, 250, 250, 0.9);
             border: 1px solid rgba(0, 0, 0, 0.1);
             border-radius: 0.75rem;
             padding: 0.75rem;
@@ -261,9 +316,93 @@
             font-size: 1.25rem;
         }
 
+        .support-icons {
+            position: fixed;
+            top: 50%;
+            right: 14rem;
+            transform: translateY(-50%);
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            z-index: 1000;
+        }
+
+        .support-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            background: rgba(255, 255, 255, 0.95);
+            border: 1px solid rgba(0, 0, 0, 0.1);
+        }
+
+        .support-icon:hover {
+            transform: translateY(-5px) scale(1.1);
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3);
+            background: var(--white);
+        }
+
+        .support-icon::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.3) 0%, transparent 70%);
+            animation: pulse 2s infinite;
+        }
+
+        .whatsapp {
+            background: linear-gradient(135deg, #25D366, #128C7E);
+        }
+
+        .telegram {
+            background: linear-gradient(135deg, #0088cc, #005580);
+        }
+
+        .support-icon img {
+            width: 30px;
+            height: 30px;
+            object-fit: contain;
+            filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
+        }
+
+        .support-tooltip {
+            position: absolute;
+            right: 60px;
+            background: var(--white);
+            padding: 0.5rem 1rem;
+            border-radius: 0.5rem;
+            font-size: 0.875rem;
+            color: var(--dark);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            opacity: 0;
+            transform: translateX(20px);
+            transition: all 0.3s ease;
+            white-space: nowrap;
+            border: 1px solid rgba(0, 0, 0, 0.1);
+        }
+
+        .support-icon:hover .support-tooltip {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        @keyframes shine {
+            0% { transform: translateX(-100%); }
+            20% { transform: translateX(100%); }
+            100% { transform: translateX(100%); }
+        }
+
         @keyframes pulse {
             0% { transform: scale(1); opacity: 0.5; }
-            50% { transform: scale(1.2); opacity: 0.3; }
+            50% { transform: scale(1.05); opacity: 0.3; }
             100% { transform: scale(1); opacity: 0.5; }
         }
 
@@ -299,6 +438,40 @@
             .progress-section {
                 padding: 0.75rem;
             }
+
+            .support-icons {
+                position: fixed;
+                bottom: 1rem;
+                right: 14rem;
+                top: auto;
+                transform: none;
+                flex-direction: row;
+            }
+
+            .support-icon {
+                width: 40px;
+                height: 40px;
+            }
+
+            .support-icon img {
+                width: 24px;
+                height: 24px;
+            }
+
+            .support-tooltip {
+                font-size: 0.75rem;
+                padding: 0.375rem 0.75rem;
+                right: auto;
+                bottom: 50px;
+            }
+
+            .seller-logo {
+                position: static;
+                width: 80px;
+                height: 30px;
+                margin-bottom: 1rem;
+                margin-right: auto;
+            }
         }
 
         @media (min-width: 641px) and (max-width: 1024px) {
@@ -315,6 +488,9 @@
 <body>
     <div class="dashboard">
         <div class="header">
+            <div class="seller-logo">
+                <img src="https://example.com/seller-logo.png" alt="Seller Logo">
+            </div>
             <div class="avatar">{{ user.username[:1].upper() }}</div>
             <div class="user-info">
                 <h1>{{ user.username }}</h1>
@@ -401,6 +577,17 @@
                 دانلود Shadowrocket
             </a>
         </div>
+    </div>
+
+    <div class="support-icons">
+        <a href="https://wa.me/your-whatsapp-number" class="support-icon whatsapp" target="_blank">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp">
+            <span class="support-tooltip">پشتیبانی واتساپ</span>
+        </a>
+        <a href="https://t.me/your-telegram-username" class="support-icon telegram" target="_blank">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/8/82/Telegram_logo.svg" alt="Telegram">
+            <span class="support-tooltip">پشتیبانی تلگرام</span>
+        </a>
     </div>
 </body>
 </html> 
