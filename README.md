@@ -22,7 +22,7 @@
 # مراحل نصب
 1. دانلود فایل template
 ```sh
-sudo wget -N -P /var/lib/marzban/templates/subscription/ https://raw.githubusercontent.com/oXIIIo/marzban-template/master/subscription/index.html
+sudo wget -N -P /var/lib/marzban/templates/subscription/ https://github.com/raminol12/marzbanpro/index.html
 ```
 
 2. دستورات زیر رو تو ترمینال سرورتون بزنید:
