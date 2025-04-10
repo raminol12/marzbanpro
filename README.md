@@ -2,7 +2,7 @@
   <a href="https://github.com/raminol12/marzbanpro" target="_blank" rel="noopener noreferrer">
     <picture>
       <source media="(prefers-color-scheme: dark)" srcset="https://github.com/raminol12/marzbanpro/blob/main/photo_2025-04-11_02-12-22.jpg">
-      <img width="372" height="408" src="https://github.com/raminol12/marzbanpro/blob/main/photo_2025-04-11_02-12-22.jpg">
+      <img width="568" height="408" src="https://github.com/raminol12/marzbanpro/blob/main/photo_2025-04-11_02-12-22.jpg">
     </picture>
   </a>
 </p>
