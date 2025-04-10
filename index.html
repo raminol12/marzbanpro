@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ user.username }} | پنل کاربری</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #4f46e5;
+            --secondary: #7c3aed;
+            --success: #10b981;
+            --warning: #f59e0b;
+            --danger: #ef4444;
+            --dark: #1f2937;
+            --light: #f3f4f6;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Vazirmatn', sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, var(--light) 0%, #e5e7eb 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0.5rem;
+        }
+
+        .dashboard {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(10px);
+            border-radius: 0.75rem;
+            padding: 1rem;
+            width: 100%;
+            max-width: 800px;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+        }
+
+        .header {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .avatar {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(45deg, var(--primary), var(--secondary));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1rem;
+            font-weight: bold;
+            position: relative;
+            flex-shrink: 0;
+        }
+
+        .avatar::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(79, 70, 229, 0.3) 0%, transparent 70%);
+            animation: pulse 2s infinite;
+        }
+
+        .user-info {
+            flex: 1;
+            min-width: 150px;
+        }
+
+        .user-info h1 {
+            font-size: 1rem;
+            color: var(--dark);
+            margin-bottom: 0.25rem;
+            word-break: break-word;
+        }
+
+        .status {
+            padding: 0.25rem 0.5rem;
+            border-radius: 1rem;
+            font-size: 0.625rem;
+            font-weight: 500;
+            display: inline-block;
+        }
+
+        .status-active { background: linear-gradient(45deg, var(--success), #34d399); color: white; }
+        .status-limited { background: linear-gradient(45deg, var(--warning), #fbbf24); color: white; }
+        .status-expired { background: linear-gradient(45deg, var(--danger), #f87171); color: white; }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 0.75rem;
+            margin-bottom: 1rem;
+        }
+
+        .stat-card {
+            background: white;
+            border-radius: 0.75rem;
+            padding: 0.75rem;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-2px);
+        }
+
+        .stat-icon {
+            font-size: 1.25rem;
+            margin-bottom: 0.5rem;
+            color: var(--primary);
+        }
+
+        .stat-label {
+            font-size: 0.625rem;
+            color: #6b7280;
+            margin-bottom: 0.25rem;
+        }
+
+        .stat-value {
+            font-size: 0.875rem;
+            font-weight: 600;
+            color: var(--dark);
+            word-break: break-word;
+        }
+
+        .progress-section {
+            background: white;
+            border-radius: 0.75rem;
+            padding: 0.75rem;
+            margin-bottom: 1rem;
+        }
+
+        .progress-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.5rem;
+            flex-wrap: wrap;
+            gap: 0.25rem;
+        }
+
+        .progress-title {
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: var(--dark);
+        }
+
+        .progress-value {
+            font-size: 0.625rem;
+            color: #6b7280;
+        }
+
+        .progress-bar {
+            height: 4px;
+            background: #e5e7eb;
+            border-radius: 2px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            border-radius: 2px;
+            transition: width 0.5s ease;
+        }
+
+        .actions {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 0.5rem;
+        }
+
+        .action-button {
+            background: white;
+            border: none;
+            border-radius: 0.5rem;
+            padding: 0.5rem;
+            color: var(--dark);
+            text-decoration: none;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.25rem;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            font-size: 0.75rem;
+        }
+
+        .action-button:hover {
+            background: linear-gradient(45deg, var(--primary), var(--secondary));
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); opacity: 0.5; }
+            50% { transform: scale(1.2); opacity: 0.3; }
+            100% { transform: scale(1); opacity: 0.5; }
+        }
+
+        @media (max-width: 640px) {
+            .dashboard {
+                padding: 0.75rem;
+                border-radius: 0.5rem;
+            }
+
+            .header {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+            }
+
+            .user-info {
+                text-align: center;
+            }
+
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .actions {
+                grid-template-columns: 1fr;
+            }
+
+            .stat-card {
+                padding: 0.5rem;
+            }
+
+            .progress-section {
+                padding: 0.5rem;
+            }
+        }
+
+        @media (min-width: 641px) and (max-width: 1024px) {
+            .dashboard {
+                padding: 0.875rem;
+            }
+
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="dashboard">
+        <div class="header">
+            <div class="avatar">{{ user.username[:1].upper() }}</div>
+            <div class="user-info">
+                <h1>{{ user.username }}</h1>
+                <div class="status status-{% if user.status.value == 'active' %}active{% elif user.status.value == 'limited' %}limited{% elif user.status.value == 'expired' %}expired{% endif %}">
+                    {% if user.status.value == 'active' %}فعال
+                    {% elif user.status.value == 'limited' %}محدود
+                    {% elif user.status.value == 'expired' %}منقضی شده
+                    {% elif user.status.value == 'disabled' %}غیرفعال{% endif %}
+                </div>
+            </div>
+        </div>
+
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-icon">⏳</div>
+                <div class="stat-label">مدت زمان باقیمانده</div>
+                <div class="stat-value">
+                    {% if not user.expire and not user.on_hold_expire_duration %}
+                    نامحدود
+                    {% else %}
+                        {% if user.status.value == 'on_hold' %}
+                            {% set remaining_seconds = [user.on_hold_expire_duration, 0] | max %}
+                        {% else %}
+                            {% set current_timestamp = now().timestamp() %}
+                            {% set remaining_seconds = [user.expire - current_timestamp, 0] | max %}
+                        {% endif %}
+                        {% set remaining_days = remaining_seconds // (24 * 3600) %}
+                        {% set remaining_hours = (remaining_seconds % (24 * 3600)) // 3600 %}
+                        {% if remaining_days >= 1 %}
+                            {{ remaining_days | int }} روز
+                        {% else %}
+                            {{ remaining_hours | int }} ساعت
+                        {% endif %}
+                    {% endif %}
+                </div>
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-icon">📊</div>
+                <div class="stat-label">حجم مصرف شده</div>
+                <div class="stat-value">{{ user.used_traffic | bytesformat }}</div>
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-icon">📈</div>
+                <div class="stat-label">محدودیت داده</div>
+                <div class="stat-value">{% if not user.data_limit %}نامحدود{% else %}{{ user.data_limit | bytesformat }}{% endif %}</div>
+            </div>
+
+            {% if user.data_limit_reset_strategy != 'no_reset' %}
+            <div class="stat-card">
+                <div class="stat-icon">🔄</div>
+                <div class="stat-label">بازه زمانی</div>
+                <div class="stat-value">{{ user.data_limit_reset_strategy.value }}</div>
+            </div>
+            {% endif %}
+        </div>
+
+        <div class="progress-section">
+            <div class="progress-header">
+                <div class="progress-title">پیشرفت مصرف</div>
+                <div class="progress-value">{{ user.used_traffic | bytesformat }} / {% if not user.data_limit %}نامحدود{% else %}{{ user.data_limit | bytesformat }}{% endif %}</div>
+            </div>
+            <div class="progress-bar">
+                <div class="progress-fill" style="width: {% if user.data_limit %}{{ [(user.used_traffic / user.data_limit) * 100, 5] | max }}%{% else %}100%{% endif %}"></div>
+            </div>
+        </div>
+
+        <div class="actions">
+            <a href="sing-box://import-remote-profile?url={{ user.subscription_url | urlencode }}#{{ user.username | urlencode }}" class="action-button" target="_blank">
+                <span>📱</span>
+                sing-box
+            </a>
+            <a href="v2rayng://install-config?url={{ user.subscription_url }}" class="action-button" target="_blank">
+                <span>📲</span>
+                v2rayNG
+            </a>
+            <a href="https://play.google.com/store/apps/details?id=com.v2ray.ang" class="action-button" target="_blank">
+                <span>⬇️</span>
+                دانلود v2rayNG
+            </a>
+            <a href="https://apps.apple.com/us/app/shadowrocket/id932747118" class="action-button" target="_blank">
+                <span>⬇️</span>
+                دانلود Shadowrocket
+            </a>
+        </div>
+    </div>
+</body>
+</html> 
