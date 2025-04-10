@@ -1,8 +1,8 @@
 <p align="center">
   <a href="https://github.com/raminol12/marzbanpro" target="_blank" rel="noopener noreferrer">
     <picture>
-      <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/oXIIIo/marzban-template/master/subscription/preview.jpg">
-      <img width="372" height="408" src="https://raw.githubusercontent.com/oXIIIo/marzban-template/master/subscription/preview.jpg">
+      <source media="(prefers-color-scheme: dark)" srcset="https://github.com/raminol12/marzbanpro/blob/main/photo_2025-04-11_02-12-22.jpg">
+      <img width="372" height="408" src="https://github.com/raminol12/marzbanpro/blob/main/photo_2025-04-11_02-12-22.jpg">
     </picture>
   </a>
 </p>
@@ -16,7 +16,7 @@
 یک قالب html ساده برای نمایش بهتر اطلاعات کاربر
 
 # ویژگی ها
-- افزودن سریع لینک سابسکریپشن به برنامه های v2rayNG، Streisand، NekoBox و sing-box
+- افزودن سریع لینک سابسکریپشن به برنامه های v2rayNG، NekoBox و sing-box
 - لینک دانلود اپلیکیشن های مورد نیاز
 
 # مراحل نصب
@@ -44,11 +44,4 @@ marzban restart
 ## بروزرسانی
 برای بروزرسانی تمپلیت فقط کافیست مرحله 1 را تکرار کنید.
 
-## کپی رایت
-این قالب بر اساس طرح [Profile Card](https://codepen.io/fredoist/pen/eNpvbr) در CodePen ساخته شده است.
 
-# حمایت از من
-
-<a href="https://nowpayments.io/donation?api_key=MG750CX-D7AMMH9-QWARQ7V-9ZKH9XQ&source=lk_donation&medium=referral" target="_blank">
-  <img src="https://nowpayments.io/images/embeds/donation-button-black.svg" alt="Crypto donation button by NOWPayments">
-</a>
