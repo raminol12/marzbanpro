@@ -41,6 +41,8 @@ SUBSCRIPTION_PAGE_TEMPLATE="subscription/index.html"
 marzban restart
 ```
 
+برای راهنمایی در مورد آیکون های پشتیبانی فایل help.html را دانلود کنید .
+
 ## بروزرسانی
 برای بروزرسانی تمپلیت فقط کافیست مرحله 1 را تکرار کنید.
 
